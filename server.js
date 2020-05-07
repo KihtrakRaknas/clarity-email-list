@@ -39,7 +39,7 @@ const mailjet = require ('node-mailjet')
       })
       .catch((err) => {
         console.log(err)
-        res.send({err:"Something went wrong. Err code: "+err.statusCode})
+        res.json({err:"Something went wrong. Err code: "+err.statusCode})
         console.log(err.statusCode)
       })
     })
@@ -72,7 +72,7 @@ function updateMailList(id,reqList,res){
 	})
 	.catch((err) => {
     console.log(err)
-    res.send({err:"Something went wrong. Err code: "+err.statusCode})
+    res.json({err:"Something went wrong. Err code: "+err.statusCode})
 		console.log(err.statusCode)
 	})
 
