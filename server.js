@@ -29,12 +29,13 @@ const mailjet = require ('node-mailjet')
 
   app.get('/addEmail', async (req, res) => {
     console.log("Email: "+req.query.email)
-    return await mailjet.get("contact", {'version': 'v3'}).id(req.query.email).request().then((result) => { //check if email exists
+    let email = decodeURIComponent(req.query.email)
+    return await mailjet.get("contact", {'version': 'v3'}).id(email).request().then((result) => { //check if email exists
       console.log(result.body.Data[0].ID)
       updateMailList(result.body.Data[0].ID, req.query.list,res)
     })
     .catch((err) => {
-      mailjet.post("contact", {'version': 'v3'}).request({"IsExcludedFromCampaigns":"false","Email":req.query.email}).then((result) => {//Create new contact
+      mailjet.post("contact", {'version': 'v3'}).request({"IsExcludedFromCampaigns":"false","Email":email}).then((result) => {//Create new contact
         console.log(result.body.Data[0].ID)
         updateMailList(result.body.Data[0].ID, req.query.list,res)
       })
