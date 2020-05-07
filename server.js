@@ -28,6 +28,7 @@ const mailjet = require ('node-mailjet')
 .connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE)
 
   app.get('/addEmail', async (req, res) => {
+    console.log("Email: "+req.query.email)
     return await mailjet.get("contact", {'version': 'v3'}).id(req.query.email).request().then((result) => { //check if email exists
       console.log(result.body.Data[0].ID)
       updateMailList(result.body.Data[0].ID, req.query.list,res)
