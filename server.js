@@ -16,7 +16,8 @@ const port = process.env.PORT || 3000
 const lists =[
   '32535', //Every day
   '32537', //every 3 days
-  '32538' //every week
+  '32538', //every week
+  '33054'//every post
 ]
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
